@@ -11,13 +11,11 @@ pipeline {
             }
             steps {
                 sh '''
-
-                    ls -la
+                    apk update && apk upgrade  // Update Alpine packages
                     node --version
                     npm --version
-                    npm ci
+                    npm install --update-binary  // Use install as a test alternative to npm ci
                     npm run build
-                    ls -la
 
 
                 '''
