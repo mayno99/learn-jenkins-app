@@ -3,10 +3,10 @@ pipeline {
 
     stages {
         stage('Build') {
-            agent{
+            agent {
                 docker {
                     image 'node:18-alpine'
-                    reuseNode true
+                    args '-u root'  
                 }
             }
             steps {
@@ -15,9 +15,6 @@ pipeline {
                     node --version
                     npm --version
                     npm install --update-binary
-                    npm run build
-
-
                 '''
             }
         }
