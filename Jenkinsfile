@@ -5,13 +5,13 @@ pipeline {
         stage('Build') {
             agent {
                 docker {
-                    image 'node:18-alpine'
-                    args '-u root'  
+                    image 'node:18-buster'  // Using Debian-based image
+                    args '-u root'  // Run as root inside the Docker container
                 }
             }
             steps {
                 sh '''
-                    apk update && apk upgrade  
+                    apt-get update && apt-get install -y ca-certificates && update-ca-certificates
                     node --version
                     npm --version
                     npm install --update-binary
